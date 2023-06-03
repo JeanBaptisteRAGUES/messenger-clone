@@ -7,6 +7,8 @@
 // Création des modèles et des relations
 // npx prisma db push
 // Si tout s'est bien passé, les collections apparaissent dans notre db mongoDB
+// npm install next-auth@latest @prisma/client @next-auth/prisma-adapter bcrypt
+// npm install -D @types/bcrypt
 
 generator client {
   provider = "prisma-client-js"
