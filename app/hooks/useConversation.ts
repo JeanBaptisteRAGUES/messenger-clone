@@ -8,6 +8,8 @@ const useConversation = () => {
         if(!params?.conversationId) {
             return '';
         }
+
+        return params.conversationId as string;
     }, [params?.conversationId]);
 
     // !! transforme un type string en type boolean
