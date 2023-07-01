@@ -1,6 +1,7 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
+import { pusherServer } from "@/app/libs/pusher";
 
 export async function POST(
     request: Request
@@ -24,7 +25,7 @@ export async function POST(
         }
 
         if(isGroup) {
-            const nexConversation = await prisma.conversation.create({
+            const newConversation = await prisma.conversation.create({
                 data: {
                     name,
                     isGroup,
@@ -44,7 +45,13 @@ export async function POST(
                 }
             });
 
-            return NextResponse.json(nexConversation);
+            newConversation.users.forEach((user) => {
+                if (user.email) {
+                    pusherServer.trigger(user.email, 'conversation:new', newConversation);
+                }
+            });
+
+            return NextResponse.json(newConversation);
         }
 
         // findMany() au lieu de findUnique() car on utilise une requete spéciale seulement disponible avec findMany()
@@ -86,6 +93,13 @@ export async function POST(
             },
             include: {
                 users: true
+            }
+        });
+
+        // Update all connections with new conversation
+        newConversation.users.map((user) => {
+            if (user.email) {
+            pusherServer.trigger(user.email, 'conversation:new', newConversation);
             }
         });
 
