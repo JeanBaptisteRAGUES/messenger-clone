@@ -15,6 +15,11 @@
 // npm install date-fns
 // npm install next-cloudinary
 // npm install @headlessui/react
+// Création d'un compte sur pusher.com, création d'un nouveau canal
+// Récupération des codes de l'api pour le nouveau canal pusher -> .env
+// npm install pusher@5.1.2 pusher-js@8.0.2
+// npm install lodash@4.17.21
+// npm install -D @types/lodash
 
 generator client {
   provider = "prisma-client-js"
