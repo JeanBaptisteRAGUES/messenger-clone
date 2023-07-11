@@ -20,6 +20,7 @@
 // npm install pusher@5.1.2 pusher-js@8.0.2
 // npm install lodash@4.17.21
 // npm install -D @types/lodash
+// npm install zustand
 
 generator client {
   provider = "prisma-client-js"
