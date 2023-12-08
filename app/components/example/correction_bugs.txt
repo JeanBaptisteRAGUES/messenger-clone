@@ -1,0 +1,9 @@
+On ne peut pas lancer directement index.html depuis ses fichiers, il faut le lancer sur un serveur type localhost
+Si on le lance depuis "npm run dev" de vite on voit l'échiquier mais stockfish bug, il faut remplacer les fichiers
+stockfish.js, stockfish.wasm et nn-5af11540bbfe.nnue (qui sont des références) par les vrais fichiers dans /src
+Remplacer le fichiers stockfish.js dans /src (qui est un lien vers stockfish-nnue-16.js) par le contenu de 
+stockfish-nnue-16.js
+On obtient une erreur de type "SharedBuffer is not defined", il faut en fait lancer l'application depuis server.js 
+Si server.js ne marche pas, il faut remplacer "type": "module" par "type": "commonjs"
+Une fois celà fait, on peut lancer server.js avec la commande "node server.js" et stockfish fonctionne
+Je n'ai pas eu à utiliser build.js pour le moment

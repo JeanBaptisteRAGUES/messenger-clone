@@ -21,6 +21,7 @@
 // npm install lodash@4.17.21
 // npm install -D @types/lodash
 // npm install zustand
+// Ajout de la ligne "postinstall": "prisma generate" dans package.json > "scripts"
 
 generator client {
   provider = "prisma-client-js"
